@@ -7,7 +7,7 @@ let log = function() {
 }
 
 let obj = {
-    "name":"sabiha"
+    "name":"Amit"
 }
 
 module.exports.endpoint = endpoint
