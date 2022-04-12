@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose")
 const bookschema = new mongoose.Schema({
     Bookname: {  type:String,required:true,unique:true},

@@ -1,4 +1,3 @@
-
 const User1Model= require('../models/bookschema')
 
 
@@ -12,6 +11,7 @@ const GBOOK = async function (req,res){
       let all= await User1Model.find()
 
 res.send({msg:all})
+
 }
 module.exports.BOOK=BOOK
 module.exports.GBOOK=GBOOK

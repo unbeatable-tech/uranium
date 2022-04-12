@@ -6,6 +6,7 @@ const User2 = require('../controllers/bookcontroller')
 
 
 
-
 router.post('/BOOKS', User2.BOOK)
 router.get('/Books1', User2.GBOOK)
+
+module.exports = router;
