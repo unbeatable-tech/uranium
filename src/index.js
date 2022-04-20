@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const route = require('./routes/route.js');
+
+
 const { default: mongoose } = require('mongoose');
 const app = express();
 
@@ -13,6 +15,12 @@ mongoose.connect("mongodb+srv://uranium-cohort:zxN697Vko486ved2@cluster0.23vax.m
 })
 .then( () => console.log("MongoDb is connected"))
 .catch ( err => console.log(err) )
+
+app.use ( function (req ,res , next){
+    console.log("THe global middleware that is accessible by all APIs")
+next()
+}
+)
 
 app.use('/', route);
 
