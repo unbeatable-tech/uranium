@@ -1,20 +1,21 @@
-const jwt =require('jsonwebtoken')
- const mid1=async function(req,res,next){
-     let headers=req.headers['X-auth-token']
-     if(!headers)
-     headers=req.headers['x-auth-token']
-     if(!headers)
-     return res.send({status:false,msg:"add token"})
-     let token=req.headers['x-Auth-token'];
-     if(!token) token=req.headers['x-auth-token']
+const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose');
 
-     if(!token)
-     return res.send({status:false,msg:"token must be present"})
-     console.log(token)
-     let decodedToken=jwt.verify(token,'functionup-uranium')
-     if(!decodedToken)
-     return res.send({status:false,msg:"invalid token"})
-     next()
- }
- module.exports.mid1=mid1
+const authCheck = async (req, res, next) => {
+    try{
+        let id = req.params.userId
+        if(!mongoose.isValidObjectId(req.params.userId)) return res.status(401).send({msg: "Invalid UserId sent in Params"})
+        let token = req.headers['x-Auth-Token'] || req.headers['x-auth-token']
+        if(!token) return res.status(401).send({msg: 'Token is required to verify log in credentials. Please send it.'}) 
+        let tokenValidity = jwt.verify(token, "Which came first, The Egg or the Chicken ??!")
+        if(tokenValidity.userId !== id) return res.status(401).send({msg: "This user hasn't been Authorised"}) 
+        next()
+        }
+    catch(err){
+        console.log(err.message)
+        res.status(401).send({status: false, msg: 'invalid token, unable to verify session. Please re-log in.'}) 
+    }
+}
+
+module.exports = {authCheck}
 

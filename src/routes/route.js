@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const userController=require('../controllers/userController');
-const { mid1 } = require('../middleware/middleware');
-router.post('/users',userController.createUser)
-router.post('/login',userController.loginUser)
-router.get('/users/:userId',mid1,userController.getUserData)
-router.put('/users/:userId',mid1,userController.updateUser)
-router.delete('/users/:userId',mid1,userController.deleteUser)
+const controller = require("../controllers/authController")
+const {authCheck} = require("../middleware/middleware")
 
+//Developer-Batch route handlers
+router.post("/users", controller.createUser)
+router.post("/login", controller.loginUser)
+router.get("/users/:userId", authCheck ,controller.fetchUser)
+router.put("/users/:userId",authCheck, controller.updateDetails)
+router.delete("/users/:userId",authCheck, controller.deleteUserData)
 
-module.exports = router; mid1
+module.exports = router;
