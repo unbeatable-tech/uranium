@@ -6,11 +6,11 @@ const aws = require("aws-sdk");
 
 
 
-aws.config.update(  {
-    accessKeyId: "AKIAY3L35MCRVFM24Q7U",
-    secretAccessKey: "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",
+aws.config.update({
+    accessKeyId: "AKIAY3L35MCRUJ6WPO6J",
+    secretAccessKey: "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",
     region: "ap-south-1"
-});
+})
 
 // this function uploads file to AWS and gives back the url for the file
 let uploadFile = async(file) => {
@@ -21,7 +21,7 @@ let uploadFile = async(file) => {
         var uploadParams = {
             ACL: "public-read", // this file is publically readable
             Bucket: "classroom-training-bucket", 
-            Key: "Amit/" +  file.originalname, 
+            Key: "abc/" +  file.originalname, 
             Body: file.buffer,
         };
 
@@ -39,9 +39,10 @@ let uploadFile = async(file) => {
 const addLink = async function(req, res) {
     try {
         let files = req.files;
+        
         if (files && files.length > 0) {
             //upload to s3 and return true..incase of error in uploading this will goto catch block( as rejected promise)
-            let uploadedFileURL = await uploadFile(files[0]); // expect this function to take file as input and give url of uploaded file as output 
+            let uploadedFileURL = await uploadFile(files[0]); 
             res.status(201).send({ status: true,msg: "file uploaded succesfully", data: uploadedFileURL });
         } else {
             res.status(400).send({ status: false, msg: "No file found" });
