@@ -1,0 +1,25 @@
+{
+  "name": "uranium",
+  "version": "1.0.0",
+  "description": "Backend cohort Mar22-Jul22",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unbeatable-tech/uranium.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unbeatable-tech/uranium/issues"
+  },
+  "homepage": "https://github.com/unbeatable-tech/uranium#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.8.2",
+    "nodemon": "^2.0.20"
+  }
+}
